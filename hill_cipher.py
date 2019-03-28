@@ -51,11 +51,11 @@ def get_adjoint_matrix(m):
     #find matrix of cofactors
     cofactors = []
     for r in range(len(m)):
-        cofactorRow = []
+        cofactor_row = []
         for c in range(len(m)):
             minor = get_matrix_minor(m,r,c)
-            cofactorRow.append(((-1)**(r+c)) * get_matrix_determinant(minor))
-        cofactors.append(cofactorRow)
+            cofactor_row.append(((-1)**(r+c)) * get_matrix_determinant(minor))
+        cofactors.append(cofactor_row)
     cofactors = transpose_matrix(cofactors)
     return cofactors
 
