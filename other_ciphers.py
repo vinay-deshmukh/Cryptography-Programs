@@ -1,5 +1,3 @@
-import math
-
 class Ciphers:
     def __init__(self, text, key=3):
         self.text = text
