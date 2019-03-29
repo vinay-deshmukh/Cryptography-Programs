@@ -19,41 +19,47 @@ class Ciphers:
         else:
             return x % m
 
+    def _encode(self, msg, a=1, b=0):
+        return ''.join([chr((( (a*(ord(t) - ord('A')) + b)) % 26) + ord('A')) for t in msg.upper().replace(' ', '')])
+
+    def _decode(self, cipher, a=1, b=0):
+        return ''.join([ chr((( self._modinv(a, 26)*(ord(c) - ord('A') - b) ) % 26) + ord('A')) for c in cipher ])
+
     def shift_encrypt(self):
         '''
         C = (P + K) % 26
         '''
-        return ''.join([ chr(((ord(t) - ord('A') + self.key) % 26) + ord('A')) for t in self.text.upper().replace(' ', '') ])
+        return self._encode(self.text, b=self.key)
 
     def shift_decrypt(self, cipher):
         '''
         P = (C - K) % 26
         '''
-        return ''.join([ chr(((ord(c) - ord('A') - self.key) % 26) + ord('A')) for c in cipher ])
+        return self._decode(cipher, b=self.key)
 
     def multiplicative_encrypt(self):
         '''
         C = (P * K) % 26
         '''
-        return ''.join([ chr((((ord(t) - ord('A')) * self.key) % 26) + ord('A')) for t in self.text.upper().replace(' ', '') ])
+        return self._encode(self.text, a=self.key)
 
     def multiplicative_decrypt(self, cipher):
         '''
         P = (C * K^-1) % 26
         '''
-        return ''.join([ chr((((ord(c) - ord('A')) * self._modinv(self.key, 26)) % 26) + ord('A')) for c in cipher ])
+        return self._decode(cipher, a=self.key)
 
     def affine_encrypt(self):
         '''
         C = (a*P + b) % 26
         '''
-        return ''.join([ chr((( self.key[0]*(ord(t) - ord('A')) + self.key[1] ) % 26) + ord('A')) for t in self.text.upper().replace(' ', '') ])
+        return self._encode(self.text, a=self.key[0], b=self.key[1])
 
     def affine_decrypt(self, cipher):
         '''
         P = (a^-1 * (C - b)) % 26
         '''
-        return ''.join([ chr((( self._modinv(self.key[0], 26)*(ord(c) - ord('A') - self.key[1]) ) % 26) + ord('A')) for c in cipher ])
+        return self._decode(cipher, a=self.key[0], b=self.key[1])
 
 
 def main():
