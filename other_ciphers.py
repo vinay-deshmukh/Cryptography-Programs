@@ -20,9 +20,15 @@ class Ciphers:
             return x % m
 
     def _encode(self, msg, a=1, b=0):
-        return ''.join([chr((( (a*(ord(t) - ord('A')) + b)) % 26) + ord('A')) for t in msg.upper().replace(' ', '')])
+    	'''
+    	common encode function
+    	'''
+        return ''.join([ chr((( (a*(ord(t) - ord('A')) + b)) % 26) + ord('A')) for t in msg.upper().replace(' ', '') ])
 
     def _decode(self, cipher, a=1, b=0):
+    	'''
+    	common decode function
+    	'''
         return ''.join([ chr((( self._modinv(a, 26)*(ord(c) - ord('A') - b) ) % 26) + ord('A')) for c in cipher ])
 
     def shift_encrypt(self):
