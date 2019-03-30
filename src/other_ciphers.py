@@ -1,83 +1,58 @@
+from utils import shift_char, modinv
+
+
 class Ciphers:
-    def __init__(self, text, key=3):
-        self.text = text.upper().replace(' ', '')
+    def __init__(self, key=3):  # 3 is for vignere's i think.
         self.key = key
 
-    def _egcd(self, a, b):
-        x,y, u,v = 0,1, 1,0
-        while a != 0:
-            q, r = b//a, b%a
-            m, n = x-u*q, y-v*q
-            b,a, x,y, u,v = a,r, u,v, m,n
-        gcd = b
-        return gcd, x, y
-
-    def _modinv(self, a, m):
-        gcd, x, y = self._egcd(a, m)
-        if gcd != 1:
-            return None  # modular inverse does not exist
-        else:
-            return x % m
-
-    def _encode(self, msg, a=1, b=0):
+    def affine_encrypt(self, msg, m=1, c=0):
         '''
-        common encode function
+        C = (m*P + c) % 26
         '''
-        return ''.join([ chr((( (a*(ord(t) - ord('A')) + b)) % 26) + ord('A')) for t in msg ])
+        return ''.join([ chr((( (m*(ord(t) - ord('A')) + c)) % 26) + ord('A')) for t in msg ])
 
-    def _decode(self, cipher, a=1, b=0):
+    def affine_decrypt(self, cipher, m=1, c=0):
         '''
-        common decode function
+        P = (a^-1 * (C - b)) % 26
         '''
-        return ''.join([ chr((( self._modinv(a, 26)*(ord(c) - ord('A') - b) ) % 26) + ord('A')) for c in cipher ])
+        return ''.join([ chr((( modinv(m, 26)*(ord(_) - ord('A') - c) ) % 26) + ord('A')) for _ in cipher ])
 
-    def shift_encrypt(self):
+    def shift_encrypt(self, text):
         '''
         C = (P + K) % 26
         '''
-        return self._encode(self.text, b=self.key)
+        return self.affine_encrypt(text, c=self.key)
 
     def shift_decrypt(self, cipher):
         '''
         P = (C - K) % 26
         '''
-        return self._decode(cipher, b=self.key)
+        return self.affine_decrypt(cipher, c=self.key)
 
-    def multiplicative_encrypt(self):
+    def multiplicative_encrypt(self, text):
         '''
         C = (P * K) % 26
         '''
-        return self._encode(self.text, a=self.key)
+        return self.affine_encrypt(text, m=self.key)
 
     def multiplicative_decrypt(self, cipher):
         '''
         P = (C * K^-1) % 26
         '''
-        return self._decode(cipher, a=self.key)
+        return self.affine_decrypt(cipher, m=self.key)
 
-    def affine_encrypt(self):
-        '''
-        C = (a*P + b) % 26
-        '''
-        return self._encode(self.text, a=self.key[0], b=self.key[1])
 
-    def affine_decrypt(self, cipher):
-        '''
-        P = (a^-1 * (C - b)) % 26
-        '''
-        return self._decode(cipher, a=self.key[0], b=self.key[1])
-
-    def encrypt_vignere(self):
+    def encrypt_vignere(self, text):
         '''
         Ci = (Pi + Ki) mod 26
         '''
-        if len(self.key) != len(self.text):
-            self.key += ''.join([ self.key[i % len(self.key)] for i in range(len(self.text) - len(self.key)) ])
+        if len(self.key) != len(text):
+            self.key += ''.join([ self.key[i % len(self.key)] for i in range(len(text) - len(self.key)) ])
 
-        elif len(self.key) > len(self.text):
-            self.key = self.text[:len(self.key)]
+        elif len(self.key) > len(text):
+            self.key = text[:len(self.key)]
 
-        return ''.join([chr(((ord(a)-ord('A')) + (ord(b)-ord('A'))) % 26 + ord('A')) for a,b in zip(self.text, self.key)])
+        return ''.join([chr(((ord(a)-ord('A')) + (ord(b)-ord('A'))) % 26 + ord('A')) for a,b in zip(text, self.key)])
 
     def decrypt_vignere(self, cipher):
         '''
@@ -88,11 +63,11 @@ class Ciphers:
 
 def main():
     text = 'twenty fifteen'
-    ciphers = Ciphers(text, 5)
+    ciphers = Ciphers(5)
 
     #------------ Additive or Shift Cipher -------------#
 
-    shift_encrypt_text = ciphers.shift_encrypt()
+    shift_encrypt_text = ciphers.shift_encrypt(text)
     print('Additive Cipher: ')
     print('Original Text: {}'.format(text))
     print('Encrypted Text: {}'.format(shift_encrypt_text))
@@ -103,7 +78,7 @@ def main():
 
     #------------ Multiplicative Cipher -------------#
 
-    multiplicative_encrypt_text = ciphers.multiplicative_encrypt()
+    multiplicative_encrypt_text = ciphers.multiplicative_encrypt(text)
     print('Multiplicative Cipher: ')
     print('Original Text: {}'.format(text))
     print('Encrypted Text: {}'.format(multiplicative_encrypt_text))
@@ -113,8 +88,8 @@ def main():
 
     #------------ Affine Cipher -----------#
 
-    affine_cipher = Ciphers(text, [17, 20])
-    affine_encrypted_text = affine_cipher.affine_encrypt()
+    affine_cipher = Ciphers([17, 20])
+    affine_encrypted_text = affine_cipher.affine_encrypt(text)
     print('Affine Cipher: ')
     print('Original Text: {}'.format(text))
     print('Encrypted Text: {}'.format( affine_encrypted_text ))
@@ -123,8 +98,8 @@ def main():
     #--------- Affine Cipher Ends ---------#
 
     #----------- Vignere Cipher ------------#
-    vignere = Ciphers(text, 'apex')
-    vignere_encrypted_text = vignere.encrypt_vignere()
+    vignere = Ciphers('apex')
+    vignere_encrypted_text = vignere.encrypt_vignere(text)
     print('Vignere Cipher: ')
     print('Original Text: {}'.format(text))
     print('Encrypted Text: {}'.format(vignere_encrypted_text))
