@@ -1,4 +1,5 @@
 import string
+import itertools
 
 # Restrict ord(), chr() to only ascii_uppercase
 # Allows us to directly get  ord('A') = 0, chr(0) = 'A', etc
@@ -38,6 +39,17 @@ def affine_encrypt(msg, mul, add):
 def affine_decrypt(msg, mul, add):
     # P = (C - add) * (mul)^-1
     return _mul( _add(msg, -add), modinv(mul, 26))
+
+def vignere_encrypt(msg, key):
+    return _vigner(msg, key, func=lambda x,y: ord(x) + ord(y))
+
+def vignere_decrypt(msg, key):
+    return _vigner(msg, key, func=lambda x,y: ord(x) - ord(y))
+
+def _vigner(msg, key, func):
+    return ''.join( chr( func(m, k)%26 )
+                for m, k in zip(msg, itertools.cycle(key)))
+
 
 def egcd(a, b):
     x,y, u,v = 0,1, 1,0
@@ -83,4 +95,11 @@ if __name__ == '__main__':
     print('Dec  :', dec)
     assert inp == dec
 
-    
+    print('\nVignere cipher')
+    key = 'CATDOG'
+    enc = vignere_encrypt(inp, key)
+    dec = vignere_decrypt(enc, key)
+    print('Input:', inp)
+    print('Enc  :', enc)
+    print('Dec  :', dec)
+    assert inp == dec
