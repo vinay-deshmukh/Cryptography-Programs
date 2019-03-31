@@ -1,10 +1,13 @@
 from string import ascii_lowercase, ascii_uppercase
+from random import randint
+import inspect
 
 
 class Logger(object):   # this is a standard logger.
     def __init__(self, logger=print):
         self.logger = logger
-    def log(*args):
+    def log(self, *args):
+        print(inspect.getmodule(inspect.stack()[1][0]), end=": ")
         self.logger(*args)
 
 
@@ -19,10 +22,9 @@ def _egcd(a, b):
 
 def modinv(a, m):
     gcd, x, y = _egcd(a, m)
-    if gcd != 1:
-        return None  # modular inverse does not exist
-    else:
+    if gcd == 1:
         return x % m
+    # mod inv doesn't exist.
 
 
 def shift_char(char, dx):
@@ -38,3 +40,9 @@ def shift_char(char, dx):
         charset = ascii_lowercase
     base_idx = charset.index(char)
     return charset[ (base_idx + dx) % 26 ]
+
+
+def get_rand_ascii_str(max_len_string=20):
+    string = "".join(chr(97+randint(0, 25)) for i in range(randint(0, max_len_string)))
+    upper_case = randint(0, 1)
+    return string.upper() if upper_case else string
