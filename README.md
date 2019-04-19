@@ -36,7 +36,7 @@
 
 9) [Write a program to share the secret key using Diffie Hellman Algorithm]()
 
-10) [Write a program to implement Man-in-the-Middle attack in Diffie Hellman Key exchange algorithm.](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/diffie_hellman)
+10) [Write a program to implement Man-in-the-Middle attack in Diffie Hellman Key exchange algorithm.](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/diffie_hellman/man_in_middle_attack)
 
 11) [Write a program to Encrypt the Plaintext “BALLOON” using Playfair Cipher with keyword “BALLOON”](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/playfair)
 
