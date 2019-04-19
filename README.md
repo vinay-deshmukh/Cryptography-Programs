@@ -34,7 +34,7 @@
 
 8) [Write a program to sign and verify a message using RSA digital signature scheme.](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/rsa)
 
-9) [Write a program to share the secret key using Diffie Hellman Algorithm]()
+9) [Write a program to share the secret key using Diffie Hellman Algorithm](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/diffie_hellman)
 
 10) [Write a program to implement Man-in-the-Middle attack in Diffie Hellman Key exchange algorithm.](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/diffie_hellman/man_in_middle_attack)
 
