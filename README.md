@@ -34,13 +34,17 @@
 
 8) [Write a program to sign and verify a message using RSA digital signature scheme.](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/rsa)
 
-9) [Write a program to share the secret key using Diffie Hellman Algorithm](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/diffie_hellman)
+9) Write a program to share the secret key using Diffie Hellman Algorithm
+    -[Sunny Java](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/diffie_hellman)
+    -[Vinay Python](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/vinay_diffie_mitm/diffie.py)
 
-10) [Write a program to implement Man-in-the-Middle attack in Diffie Hellman Key exchange algorithm.](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/diffie_hellman/man_in_middle_attack)
+10) Write a program to implement Man-in-the-Middle attack in Diffie Hellman Key exchange algorithm.
+    -[Sunny Python](https://github.com/vinay-deshmukh/Cryptography-Programs/blob/master/src/diffie_hellman/man_in_middle_attack/MITM.py)
+    -[Vinay Python](https://github.com/vinay-deshmukh/Cryptography-Programs/blob/master/src/vinay_diffie_mitm/diffie_mitm.py)
 
 11) [Write a program to Encrypt the Plaintext “BALLOON” using Playfair Cipher with keyword “BALLOON”](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/playfair)
 
-12) [Write a program to implement Hill Cipher to encrypt and decrypt the plaintext “short”. The key to be used is “hill” using  2*2 matrix.](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/hill_cipher)
+12) [Write a program to implement Hill Cipher to encrypt and decrypt the plaintext “short”. The key to be used is “hill” using  2x2 matrix.](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/hill_cipher)
 
 13) Write a program to Encrypt and Decrypt the plaintext “Hello” using Multiplicative Cipher with Key=5. 
     - [Bhushan Python](https://github.com/bhushan-borole/Sem6/blob/master/CSS/other_ciphers.py)  
