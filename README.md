@@ -42,7 +42,9 @@
     -[Sunny Python](https://github.com/vinay-deshmukh/Cryptography-Programs/blob/master/src/diffie_hellman/man_in_middle_attack/MITM.py)
     -[Vinay Python](https://github.com/vinay-deshmukh/Cryptography-Programs/blob/master/src/vinay_diffie_mitm/diffie_mitm.py)
 
-11) [Write a program to Encrypt the Plaintext “BALLOON” using Playfair Cipher with keyword “BALLOON”](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/playfair)
+11) Write a program to Encrypt the Plaintext “BALLOON” using Playfair Cipher with keyword “BALLOON”  
+	- [Bhushan Python](https://github.com/vinay-deshmukh/Cryptography-Programs/blob/master/src/playfair/play_fair_bhushan.py)
+	- [Vinay Python](https://github.com/vinay-deshmukh/Cryptography-Programs/blob/master/src/playfair/playfair.py)
 
 12) Write a program to implement Hill Cipher to encrypt and decrypt the plaintext “short”. The key to be used is “hill” using  2x2 matrix.
     -[Bhushan Python](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/hill_cipher)
