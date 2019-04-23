@@ -15,3 +15,15 @@ print(f'Public key of B : {yb}')
 print(f'Key created by A: {ka}')
 print(f'Key created by B: {kb}')
 assert ka == kb, 'Diffie Hellman failed!'
+
+'''
+Output:
+Large Prime     : 29
+Primitive Root  : 4
+Private Key of A: 7
+Private Key of B: 11
+Public key of A : 28
+Public key of B : 5
+Key created by A: 28
+Key created by B: 28
+'''
