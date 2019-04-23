@@ -1,13 +1,13 @@
-def fence(lst, numrails):
-    fence = [[None] * len(lst) for n in range(numrails)]   # memory inefficient.
-    rails = [*range(0, numrails - 1), *range(numrails - 1, 0, -1)]  # sawtooth.
-    for n, x in enumerate(lst): fence[rails[n % len(rails)]][n] = x
-    return [j for i in fence for j in i if j is not None]
-    return [c for c in sum(fence, []) if c is not None]
+def fence(lst, height):
+    _fence = [[None] * len(lst) for n in range(height)]   # memory inefficient.
+    rails = [*range(0, height - 1), *range(height - 1, 0, -1)]  # sawtooth.
+    for n, x in enumerate(lst): 
+        _fence[rails[n % len(rails)]][n] = x
+    return [c for c in sum(_fence, []) if c is not None]
 
-def encode(text, n):
-    return ''.join(fence(text, n))
+def encode(text, h):
+    return ''.join(fence(text, h))
 
-def decode(text, n):
-    pos = fence(range(len(text)), n)
-    return ''.join(text[pos.index(n)] for n in range(len(text)))
+def decode(cipher, h):
+    pos = fence(range(len(cipher)), h)
+    return ''.join(text[pos.index(i)] for i in range(len(cipher)))
