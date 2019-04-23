@@ -44,7 +44,9 @@
 
 11) [Write a program to Encrypt the Plaintext “BALLOON” using Playfair Cipher with keyword “BALLOON”](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/playfair)
 
-12) [Write a program to implement Hill Cipher to encrypt and decrypt the plaintext “short”. The key to be used is “hill” using  2x2 matrix.](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/hill_cipher)
+12) Write a program to implement Hill Cipher to encrypt and decrypt the plaintext “short”. The key to be used is “hill” using  2x2 matrix.
+    -[Bhushan Python](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/hill_cipher)
+    -[Vinay Python](https://github.com/vinay-deshmukh/Cryptography-Programs/tree/master/src/vinay_hill_cipher)
 
 13) Write a program to Encrypt and Decrypt the plaintext “Hello” using Multiplicative Cipher with Key=5. 
     - [Bhushan Python](https://github.com/bhushan-borole/Sem6/blob/master/CSS/other_ciphers.py)  
